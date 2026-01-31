@@ -74,9 +74,7 @@ class TableSQL:
             else:
                 field_def = f"{field_name} {SQLTypeGenerator.get_sql_type(field)}"
                 
-            if isinstance(field, PasswordField):
-                sql_safely_password_store_table = f'CREATE TABLE IF NOT EXISTS passwords (id INTEGER PRIMARY KEY, hash VARCHAR({field.max_length}) NOT NULL, salt VARCHAR({field.salt_size}) NOT NULL);'
-            if field.primary_key:
+           if field.primary_key:
                 field_def += ' PRIMARY KEY'
             if getattr(field, 'auto_increment', False):
                 field_def += auto_increment
